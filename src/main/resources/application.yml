@@ -1,6 +1,22 @@
+server:
+  port: 8888
+
 spring:
-    cloud:
-      config:
-        server:
-          git:
-            uri: https://github.com/capalatamnobleproglat/config-repo
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/capalatamnobleproglat/config-repo
+
+# Configuración para exponer las propiedades configuradas en el Config Server mediante un endpoint HTTP
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# Configuración para permitir que los microservicios se refresquen dinámicamente al cambiar la configuración en el Config Server
+# Esta propiedad debe estar habilitada para que los cambios en las propiedades tengan efecto en tiempo de ejecución sin necesidad de reiniciar los microservicios
+spring.cloud.config.server.refresh.enabled: true
