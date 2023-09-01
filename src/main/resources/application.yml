@@ -1,6 +1,11 @@
 spring:
   application:
     name: config-server
-
+  cloud:
+    bus:
+      enabled: true
+      kafka:
+        binder:
+          brokers: localhost:9092
 server:
   port: 8888
